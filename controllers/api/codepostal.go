@@ -35,7 +35,7 @@ func (c *CodePostalAPIController) Get() {
 	}
 
 	if len(communesCP) == 0 {
-		c.Ctx.WriteString("")
+		c.Ctx.ResponseWriter.WriteHeader(400)
 		return
 	}
 
