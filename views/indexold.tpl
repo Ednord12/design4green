@@ -17,7 +17,7 @@
 
   <div class="container">
     <h1>Welcome to Beego</h1>
-    Beego is a simple & powerful Go web framework which is inspired by tornado and sinatra.
+    Beego is a simple & pooowerful Go web framework which is inspired by tornado and sinatra.
   </div>
   <footer>
   </footer>
