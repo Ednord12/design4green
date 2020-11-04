@@ -28,7 +28,8 @@
                     'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover&nbsp;</p>
                 <div class="row d-flex flex-grow-0"
                     style="width: 95%;height: 85px;">
-                    <div class="col-12 col-sm-12 col-lg-5 offset-0 d-flex justify-content-center align-items-center align-content-center" style="padding-right: 0px;padding-left: 0px;"><input type="text" style="height: 100%;margin: 0px;width: 100%;text-align: center;background: rgb(222,222,222);padding: 18px;border-style: none;border-left-style: solid;" placeholder="CODE POSTAL"></div>
+                    <div class="col-12 col-sm-12 col-lg-5 offset-0 d-flex justify-content-center align-items-center align-content-center" style="padding-right: 0px;padding-left: 0px;">
+                        <input id="txt_code_postal" type="text" style="height: 100%;margin: 0px;width: 100%;text-align: center;background: rgb(222,222,222);padding: 18px;border-style: none;border-left-style: solid;" placeholder="CODE POSTAL"></div>
                     <div class="col-5 col-sm-12 col-lg-5" style="padding: 0px;padding-left: 0px;">
                         <select id="communes" class="js-example-placeholder-single js-states form-control" style="height: 100%;width: 100%;margin: 0px;margin-top: 0px;margin-right: 0px;text-align: center;background: #dedede;border-style: none;border-left-style: solid;padding: 18px;">
                             <option></option>
@@ -38,7 +39,7 @@
                         </select>
                     </div>
                     <div
-                        class="col-sm-12 col-lg-2" style="padding: 0px;"><button class="btn btn-primary text-uppercase text-center d-flex justify-content-center align-items-center" type="button" style="height: 100%;width: 100%;padding: 18px;text-align: center;background: #81c784;border-style: none;">RECHERCHER!</button></div>
+                        class="col-sm-12 col-lg-2" style="padding: 0px;"><button id='btn_search' class="btn btn-primary text-uppercase text-center d-flex justify-content-center align-items-center" type="button" style="height: 100%;width: 100%;padding: 18px;text-align: center;background: #81c784;border-style: none;">RECHERCHER!</button></div>
             </div>
         </div>
     </div>
