@@ -24,7 +24,7 @@
         <div class="card d-flex justify-content-center align-items-center" style="width: 100%;height: 100%;border-top-color: rgb(129,199,132);border-right-style: none;border-bottom-color: rgb(129,199,132);border-left-style: none;">
             <div class="card-body d-flex flex-column justify-content-center align-items-center" style="height: 634px;border-style: none;border-bottom-color: #81c784;border-left-style: none;">
                 <h1 style="color: #81c784;">Fragil'Indice</h1>
-                <p style="margin: 46px;text-align: center;width: 90%;margin-left: 30px;margin-right: 30px;margin-top: 30px;margin-bottom: 30px;">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using
+                <p style="margin: 46px;text-align: center;width: 70%;margin-left: 30px;margin-right: 30px;margin-top: 30px;margin-bottom: 30px;">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using
                     'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover&nbsp;</p>
                 <div class="row d-flex flex-grow-0"
                     style="width: 95%;height: 85px;">
@@ -146,13 +146,8 @@
         </footer>
     </div>
     {{template "include/js.tpl"}}
+    {{template "include/myjs.tpl"}}
+
 </body>
-<script>
-    $(document).ready(function(){
-        $("#communes").select2({
-            placeholder: 'Sélectionnez une commune',
-            allowClear: true
-        });
-    })
-</script>
+
 </html>
