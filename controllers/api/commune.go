@@ -1,7 +1,10 @@
 package api
 
 import (
+	"design-4-green/models"
+
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
 )
 
 type CommuneAPIController struct {
@@ -9,5 +12,24 @@ type CommuneAPIController struct {
 }
 
 func (c *CommuneAPIController) Get() {
+	// if c.Ctx.Input.IsAjax() == false {
+	// 	c.Ctx.WriteString("")
+	// 	return
+	// }
 
+	o := orm.NewOrm()
+	id := c.Ctx.Input.Param(":id")
+
+	var commune models.Commune
+
+	if err := o.QueryTable(commune).Filter("id", id).RelatedSel().One(&commune); err != nil {
+		beego.Error(err)
+		if err == orm.ErrNoRows {
+			c.Ctx.WriteString("")
+			return
+		}
+	}
+
+	c.Data["json"] = commune
+	c.ServeJSON()
 }
