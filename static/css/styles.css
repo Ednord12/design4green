@@ -68,3 +68,41 @@
     height: 85px !important;
 }
 
+h2 {
+    font-size: 8rem;
+}
+
+h3 {
+    font-size: 4rem;
+}
+
+.intro p {
+    width: 75%;
+}
+
+.rang {
+    transform: rotate(8deg);
+    min-height: 200px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+@media only screen and (max-width: 850px) {
+    h2 {
+        font-size:3.2rem;
+    }
+
+    .intro p {
+        width: 90%;
+    }
+
+}
+  
+@media only screen and (max-width: 992px) {
+    .rang {
+        transform: rotate(8deg);
+        min-height: 200px;
+        margin: 100px;
+    }
+}
