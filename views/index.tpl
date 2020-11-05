@@ -77,11 +77,13 @@
         <div class="container" >
             <div class="row">
                 <div class="col-12 col-lg-8">
-                    <div class="intro align-items-center">
+                    <div class="intro align-items-center" style="max-width: 700px;">
                         <h3 id='idNomCommune'></h3>
-                        <p>La commune de la Rochelle possède un score de 78 sur 100, ce qui la classe 587/ 3824
-                        <p>Rapport effectué le 04 /11/ 2020</p>
-                        </p>
+                        <p>Le score globale correspond à la moyenne des scores des 4 axes (dont vous pouvez voir le détail ci-dessous).</p>
+                        <p id="idScoreMax"></p>
+                        <p>Globalement, plus ce score est élevé, plus la fragilité numérique de la commune recherché est forte.</p>
+                        <p>Concernant le classement, celui-ci recense toutes les communes présentes dans la base de données et calcule le rang de la commune recherché par rapport à son score global. <br> 
+                            Plus le rang est petit, plus la fragilité numérique observée est basse.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4" >
@@ -176,8 +178,7 @@
                                 <div class="col-12 col-lg-6 ">
                                     <div class="card  border  shadow-lg" style="width: 100%;height: 217px;">
                                         <div class="card-body">
-                                            <h6 class=" card-subtitle mb-2" style="text-align: center; color:#006266;">Compétences
-                                                numériques/scolaire&nbsp;</h6>
+                                            <h6 class=" card-subtitle mb-2" style="text-align: center; color:#006266;">Capacité d'usage des interfaces numériques&nbsp;</h6>
                                             <p id='idCompetencesNumeriqueScore' class="card-text"
                                                 style="font-size: 90px;text-align: center;color: #006266;">54</p>
                                         </div>

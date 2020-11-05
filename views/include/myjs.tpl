@@ -24,6 +24,8 @@
     let rangGlobal = document.getElementById('idGlobalRang')
     let nomDepartement = document.getElementById('idNomDepartement')
     let denominateur = document.getElementById('idDenominateur')
+    let txtScoreMax = document.getElementById('idScoreMax')
+    txtScoreMax.style.visibility = "hidden";
 
 
     /*******************************************************************/
@@ -54,6 +56,7 @@
         if(txtSeach.empty || select.val() != ""){
             selectedIndex= select.select2('data')[0]['id']
             makeAjaxCall('GET', '/api/commune/' + selectedIndex, setGlobalIndicators)
+            txtScoreMax.style.visibility = "visible";
             resetAllScore()
         }else{
             resetAllScore()
@@ -110,7 +113,7 @@
         nomRegion.textContent = data.region.nom
         nomCommune.textContent = data.nom_commune
         globalScore.textContent = "Score global : " + data.score_global
-
+        txtScoreMax.textContent = "Le score maximal possible est de " + data.score_max + "."
         denominateur.textContent = ' / ' + data.nb_communes
 
 
