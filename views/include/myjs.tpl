@@ -8,6 +8,7 @@
 
 
     let txtSeach = document.getElementById('txt_code_postal')
+    let txtError = document.getElementById('error')
     let btnSeach = document.getElementById('btn_search')
     let select = document.getElementById('communes')
     let accesInferfaceNumeriqueScore = document.getElementById('idAccesInferfaceNumeriqueScore')
@@ -19,7 +20,9 @@
     let globalScore = document.getElementById('idGlobalScore')
     let nomCommune = document.getElementById('idNomCommune')
     let nomRegion = document.getElementById('idNomRegion')
+    let rangGlobal = document.getElementById('idGlobalRang')
     let nomDepartement = document.getElementById('idNomDepartement')
+    
 
 
 
@@ -31,7 +34,6 @@
 
         txtSeach.addEventListener('input', (event) => {
             if (event.currentTarget.value.length === 5) {
-
                 console.log(event.currentTarget.value)
                 removeSelectOptions()
                 makeAjaxCall('GET', '/api/codepostal/' + event.currentTarget.value, fillCommuneList)
@@ -44,9 +46,18 @@
 
     btnSeach.addEventListener('click', (event) => {
         console.log(event.currentTarget.value)
-        console.log('ok')
-        resetAllScore()
-        makeAjaxCall('GET', '/api/commune/' + select.options[select.selectedIndex].id, setGlobalIndicators)
+        console.log(select.selectedIndex)
+        // if(txtSeach.value.length > 5) 
+        if (txtSeach.empty || select.selectedIndex != -1) {
+            makeAjaxCall('GET', '/api/commune/' + select.options[select.selectedIndex].id, setGlobalIndicators)
+            resetAllScore()
+        }
+        else {
+            resetAllScore()
+            txtError.textContent="Données non valides"
+            }
+
+
 
     })
 
@@ -92,10 +103,11 @@
         setCounter(data.region.score_global, regionalScore)
         setCounter(data.score_global, globalScore)
 
-        nomDepartement.textContent=data.departement.nom
-        nomRegion.textContent=data.region.nom
-        nomRegion.textContent=data.region.nom
-        nomCommune.textContent=data.nom_commune
+        nomDepartement.textContent = data.departement.nom
+        nomRegion.textContent = data.region.nom
+        nomRegion.textContent = data.region.nom
+        nomCommune.textContent = data.nom_commune
+        rangGlobal.textContent=data.rang
 
 
     }
@@ -114,7 +126,7 @@
         nomCommune.textContent = empty
         nomDepartement.textContent = empty
         nomRegion.textContent = empty
-
+        txtError.textContent=empty
 
     }
 
@@ -165,6 +177,12 @@
 
 
 
+    })
+
+    $("#txt_code_postal").keypress(function () {
+        if (this.value.length == 5) {
+            return false;
+        }
     })
     // function call
 
