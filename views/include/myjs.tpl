@@ -51,18 +51,14 @@
 
 
     btnSeach.addEventListener('click', (event) => {
-        selectedIndex = select.select2('data')[0]['id']
-        if (txtSeach.empty || selectedIndex != -1) {
+        if(txtSeach.empty || select.val() != ""){
+            selectedIndex= select.select2('data')[0]['id']
             makeAjaxCall('GET', '/api/commune/' + selectedIndex, setGlobalIndicators)
             resetAllScore()
-        }
-        else {
+        }else{
             resetAllScore()
             txtError.textContent = "Données non valides"
         }
-
-
-
     })
 
 
