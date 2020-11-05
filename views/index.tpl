@@ -33,9 +33,7 @@
                     <div class="col-5 col-sm-12 col-lg-5" style="padding: 0px;padding-left: 0px;">
                         <select id="communes" class="js-example-placeholder-single js-states form-control" style="height: 100%;width: 100%;margin: 0px;margin-top: 0px;margin-right: 0px;text-align: center;background: #dedede;border-style: none;border-left-style: solid;padding: 18px;">
                             <option></option>
-                            <option value="12">This is item 1</option>
-                            <option value="13">This is item 2</option>
-                            <option value="14">This is item 3</option>
+                           
                         </select>
                     </div>
                     <div
@@ -50,7 +48,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="intro">
-                        <h2>LA ROCHELLE VILLE</h2>
+                        <h2 id='idNomCommune'></h2>
                         <p style="margin-bottom: 4px;">Resultat de votre&nbsp; recherche&nbsp;</p>
                         <p>Rapport effectué le&nbsp; 04 /11/ 2020</p>
                         <p>La commune de la Rochelle possède un score de 78 sur 100, ce qui la&nbsp; classe 587/ 3824</p>
@@ -64,7 +62,7 @@
                                 <h5 class="mb-0" style="color: #ffffff;text-align: center;font-size: 29px;">SCORE GLOBAL</h5>
                             </div>
                             <div class="card-body">
-                                <p class="card-text" style="font-size: 83px;">78</p>
+                                <p  id='idGlobalScore'  class="card-text" style="font-size: 83px;">78</p>
                                 <p class="text-right card-text" style="text-align: center;font-size: 28px;">/100</p>
                             </div>
                         </div>
@@ -80,29 +78,31 @@
                     <div class="card" style="width: 100%;height: 100%;border-style: none;">
                         <div class="card-body">
                             <h6 class="text-center text-muted card-subtitle mb-2">Score régional</h6>
-                            <p class="card-text" style="font-size: 90px;text-align: center;">80</p>
+                            <h6 id='idNomRegion' class="text-center text-muted card-subtitle mb-2"></h6>
+                            <p  id='idRegionalScore' class="card-text" style="font-size: 90px;text-align: center;">80</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-3 d-flex justify-content-between align-items-center" style="box-shadow: 0px 0px;">
                     <div class="card" style="width: 100%;height: 100%;border-style: none;">
                         <div class="card-body">
-                            <h6 class="text-center text-muted card-subtitle mb-2" style="text-align: center;">Score départemental</h6>
-                            <p class="card-text" style="font-size: 90px;text-align: center;">54</p>
+                            <h6  class="text-center text-muted card-subtitle mb-2" style="text-align: center;">Score départemental</h6>
+                            <h6  id='idNomDepartement' class="text-center text-muted card-subtitle mb-2"></h6>
+                            <p id='idDepartementalScore' class="card-text" style="font-size: 90px;text-align: center;">54</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row d-flex flex-row justify-content-between align-items-center" style="margin-top: 49px;">
                 <div class="col-md-12 d-flex justify-content-around">
-                    <h5 class="d-flex">Critères d'accès&nbsp;</h5>
-                    <h5 class="d-flex">Critères de compétences</h5>
+                    <h5 class="d-flex text-muted">Critères d'accès&nbsp;</h5>
+                    <h5 class="d-flex text-muted">Critères de compétences</h5>
                 </div>
                 <div class="col-md-12 col-lg-3 d-flex justify-content-center align-items-center" style="box-shadow: 0px 0px;">
                     <div class="card border-secondary border rounded-circle shadow-lg" style="padding: 10px;">
                         <div class="card-body" style="color: #e61611;">
                             <h6 class="text-secondary card-subtitle mb-2" style="text-align: center;color: #f4eb49;">Accès aux interfaces numériques</h6>
-                            <p class="card-text" style="text-align: center;font-size: 90px;background: #ffffff;color: #e61611;">35</p>
+                            <p  id='idAccesInferfaceNumeriqueScore' class="card-text" style="text-align: center;font-size: 90px;background: #ffffff;color: #e61611;">35</p>
                         </div>
                     </div>
                 </div>
@@ -110,23 +110,23 @@
                     <div class="card border-success border rounded-circle shadow-lg" style="width: 100%;height: 100%;padding: 20px;border-color: #92d36f;">
                         <div class="card-body">
                             <h6 class="text-success card-subtitle mb-2" style="text-align: center;">Accès à l'information</h6>
-                            <p class="card-text" style="font-size: 90px;text-align: center;color: #92d36f;">68</p>
+                            <p id='idAccesInformationScore' class="card-text" style="font-size: 90px;text-align: center;color: #92d36f;">68</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-3 d-flex justify-content-between align-items-center" style="box-shadow: 0px 0px;">
                     <div class="card border-success border rounded-circle shadow-lg" style="width: 100%;height: 100%;margin: 0px;padding: 10px;">
                         <div class="card-body">
-                            <h6 class="text-success card-subtitle mb-2" style="text-align: center;">Compétences administrative</h6>
-                            <p class="card-text" style="font-size: 90px;text-align: center;color: #92d36f;">80</p>
+                            <h6  class="text-success card-subtitle mb-2" style="text-align: center;">Compétences administrative</h6>
+                            <p id='idCompetencesAdministrativeScore' class="card-text" style="font-size: 90px;text-align: center;color: #92d36f;">80</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-3 d-flex justify-content-between align-items-center" style="box-shadow: 0px 0px;">
                     <div class="card border-warning border rounded-circle shadow-lg" style="width: 100%;height: 100%;margin: 10px;padding: 10px;">
                         <div class="card-body">
-                            <h6 class="text-warning card-subtitle mb-2" style="text-align: center;">Compétences numériques/scolaire&nbsp;</h6>
-                            <p class="card-text" style="font-size: 90px;text-align: center;color: #f4eb49;">54</p>
+                            <h6   class="text-warning card-subtitle mb-2" style="text-align: center;">Compétences numériques/scolaire&nbsp;</h6>
+                            <p id='idCompetencesNumeriqueScore' class="card-text" style="font-size: 90px;text-align: center;color: #f4eb49;">54</p>
                         </div>
                     </div>
                 </div>
