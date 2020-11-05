@@ -16,6 +16,7 @@ type Commune struct {
 	Region           *Region      `json:"region,omitempty" orm:"rel(fk)"`
 	Rang             int          `json:"rang" orm:"column(rang)"`
 	NbCommunes       int          `json:"nb_communes" orm:"-"`
+	ScoreMax         int          `json:"score_max" orm:"-"`
 }
 
 func init() {

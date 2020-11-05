@@ -7,8 +7,10 @@ import (
 
 var (
 	nombreCommunes int = 0
+	scoreGlobalMax int = 0
 )
 
+// CalculNombreCommunes retourne le nombre de communes
 func CalculNombreCommunes() int {
 	if nombreCommunes == 0 {
 
@@ -23,4 +25,20 @@ func CalculNombreCommunes() int {
 	}
 
 	return nombreCommunes
+}
+
+// CalculMax retourne le max de chacun des scores
+func CalculMax() int {
+	if scoreGlobalMax == 0 {
+
+		o := orm.NewOrm()
+
+		query := "SELECT MAX(score_global) FROM Commune "
+
+		if err := o.Raw(query).QueryRow(&scoreGlobalMax); err != nil {
+			beego.Error(err)
+		}
+	}
+
+	return scoreGlobalMax
 }

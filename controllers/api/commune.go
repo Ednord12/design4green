@@ -32,6 +32,7 @@ func (c *CommuneAPIController) Get() {
 	}
 
 	commune.NbCommunes = libs.CalculNombreCommunes()
+	commune.ScoreMax = libs.CalculMax()
 	c.Data["json"] = commune
 	c.ServeJSON()
 }
