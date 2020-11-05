@@ -21,7 +21,11 @@
     let nomRegion = document.getElementById('idNomRegion')
     let rangGlobal = document.getElementById('idGlobalRang')
     let nomDepartement = document.getElementById('idNomDepartement')
+    let btnAccept = document.getElementById('idAccept')
+    let btnRefuse = document.getElementById('idRefuse')
+    let mainContainer = document.getElementById('idMainContainer')
     let denominateur = document.getElementById('idDenominateur')
+
 
 
     /*******************************************************************/
@@ -46,14 +50,22 @@
 
         })
     }
+    btnAccept.addEventListener('click', () => {
+        setCookie("cookies", 'true', 100)
+        mainContainer.style.display = 'none'
+
+    })
+    btnRefuse.addEventListener('click', () => {
+        mainContainer.style.display = 'none'
+    })
 
 
     btnSeach.addEventListener('click', (event) => {
         if (txtSeach.empty || select.val() != "") {
             selectedIndex = select.select2('data')[0]['id']
             /* On verifie si la requete existe deja */
-            getCookie(selectedIndex,processCall)
-            
+            getCookie(selectedIndex, processCall)
+
 
         } else {
             resetAllScore()
@@ -62,17 +74,17 @@
     })
 
 
-    const processCall=(data)=>{
+    const processCall = (data) => {
 
         if (data != null) {
-                console.log("cookie existe")
+            console.log("cookie existe")
 
-                setGlobalIndicators(data)
-            } else {
-                console.log("cookie not existe")
+            setGlobalIndicators(data)
+        } else {
+            console.log("cookie not existe")
 
-                makeAjaxCall('GET', '/api/commune/' + selectedIndex, setGlobalIndicators)
-            }
+            makeAjaxCall('GET', '/api/commune/' + selectedIndex, setGlobalIndicators)
+        }
     }
 
 
@@ -107,13 +119,22 @@
 
         let dataJson = JSON.parse(data)
         fillScoreFiled(dataJson)
-        setCookie(selectedIndex, data, 100)
+        console.log(getCookie("cookies"));
+        getCookie("cookies", (result) => {
+            if (result != null) {
+
+                console.log("setting cookies");
+                setCookie(selectedIndex, data, 100)
+            }
+
+        })
+
 
     }
 
     const fillScoreFiled = (data) => {
 
-        console.log("fillScoreFiled",data)
+        console.log("fillScoreFiled", data)
 
         setCounter(data.score_acces_intnum, accesInferfaceNumeriqueScore)
         setCounter(data.score_acces_info, accesInformationScore)
@@ -129,7 +150,7 @@
         nomRegion.textContent = data.region.nom
         nomCommune.textContent = data.nom_commune
         globalScore.textContent = "Score global : " + data.score_global
-        console.log("Score",globalScore.textContent)
+        console.log("Score", globalScore.textContent)
 
         denominateur.textContent = ' / ' + data.nb_communes
 
@@ -203,7 +224,7 @@
         date.setTime(date.getTime() + (expireddays * 24 * 60 * 60 * 1000));
         var expires = "expires=" + date.toUTCString();
 
-        var cookie = [key, '=', JSON.stringify(value), '; ',expires, '; path=/;'].join('');
+        var cookie = [key, '=', JSON.stringify(value), '; ', expires, '; path=/;'].join('');
         console.log(cookie);
         document.cookie = cookie;
         /*
@@ -213,14 +234,14 @@
         document.cookie = key + "=" + value + ";" + expires + ";path=/";*/
     }
 
-    const getCookie = (key,callback) => {
+    const getCookie = (key, callback) => {
 
 
 
         var result = document.cookie.match(new RegExp(key + '=([^;]+)'));
         result && (result = JSON.parse(result[1]));
         console.log(result)
-        callback(result)
+        if (callback) callback(result)
 
 
         /* var name = key + "=";
@@ -240,6 +261,9 @@
          }
          return "";*/
     }
+    const checkCookies = () => {
+        if (getCookie("cookies") != null) mainContainer.style.display = "none"
+    }
 
 
 
@@ -249,6 +273,7 @@
         select.select2({
             placeholder: 'Sélectionnez une commune',
         });
+
 
 
 
@@ -262,6 +287,7 @@
     // function call
 
 
+    checkCookies()
     bindCodePostalListener();
     resetAllScore()
 

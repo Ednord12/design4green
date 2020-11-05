@@ -179,18 +179,29 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-3 d-flex justify-content-between align-items-center"
-                style="box-shadow: 0px 0px;">
-                <div class="card  border  shadow-lg" style="width: 100%;height: 100%;margin: 0px;padding: 10px;">
-                    <div class="card-body">
-                        <h6 class=" card-subtitle mb-2" style="text-align: center; color: #F79F1F;">Compétences
-                            administrative</h6>
-                        <p id='idCompetencesAdministrativeScore' class="card-text"
-                            style="font-size: 90px;text-align: center;color: #F79F1F;">80</p>
+                    style="box-shadow: 0px 0px;">
+                    <div class="card  border  shadow-lg" style="width: 100%;height: 100%;margin: 0px;padding: 10px;">
+                        <div class="card-body">
+                            <h6 class=" card-subtitle mb-2" style="text-align: center; color: #F79F1F;">Compétences
+                                administrative</h6>
+                            <p id='idCompetencesAdministrativeScore' class="card-text"
+                                style="font-size: 90px;text-align: center;color: #F79F1F;">80</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
         </div>
+    </div>
+    <div  id='idMainContainer'  style="position: absolute; bottom:-200%; top:0%; left: 0%; width: 100%; height: 200%; background-color: #2b26268f;">
+        <div class="  card d-flex justify-content-center" style="justify-content: center; align-items: center;height: 900px;">
+            <p class=" ">Ce site, pour son fonctionnement, utilise les cookies </p>
+            <div>
+                <button  id='idAccept'class="btn btn-dark btn-lg">J'accepte</button>
+                <button id='idRefuse' class=" btn btn-danger btn-lg">Je refuse</button>
+            </div>
+
+        </div>
+
     </div>
     <div class="footer-basic">
         <footer>
