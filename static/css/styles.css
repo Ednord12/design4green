@@ -76,6 +76,11 @@ h3 {
     font-size: 4rem;
 }
 
+.bgColor_gray{
+    background-color: #4b4c4d;
+    color: #ffffff;
+}
+
 .intro p {
     width: 75%;
 }
