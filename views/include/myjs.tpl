@@ -4,13 +4,14 @@
 
 
 
-    var duree = 1.5; // Durée en seconde pendant laquel le compteur ira de 0 à 15
+    var duree = 2; // Durée en seconde pendant laquel le compteur ira de 0 à 15
 
+
+    let select = $("#communes")
 
     let txtSeach = document.getElementById('txt_code_postal')
     let txtError = document.getElementById('error')
     let btnSeach = document.getElementById('btn_search')
-    let select = document.getElementById('communes')
     let accesInferfaceNumeriqueScore = document.getElementById('idAccesInferfaceNumeriqueScore')
     let accesInformationScore = document.getElementById('idAccesInformationScore')
     let competencesAdministrativeScore = document.getElementById('idCompetencesAdministrativeScore')
@@ -33,14 +34,14 @@
         txtSeach.addEventListener('input', (event) => {
             if (event.currentTarget.value.length === 5) {
                 console.log(event.currentTarget.value)
-                select.desabled = false
+                select.prop("disabled", false) 
                 removeSelectOptions()
                 makeAjaxCall('GET', '/api/codepostal/' + event.currentTarget.value, fillCommuneList)
 
             }
 
-            else if (event.currentTarget.value.length === 0) {
-                select.disabled = true
+            else if (event.currentTarget.value.length < 5) {
+                select.prop("disabled", true) 
                 removeSelectOptions()
                 resetAllScore()
             }
@@ -50,20 +51,14 @@
 
 
     btnSeach.addEventListener('click', (event) => {
-        console.log(event.currentTarget.value)
-        console.log(select.selectedIndex)
-        // if(txtSeach.value.length > 5) 
-        if (txtSeach.empty || select.selectedIndex != -1) {
-            makeAjaxCall('GET', '/api/commune/' + select.options[select.selectedIndex].id, setGlobalIndicators)
+        if(txtSeach.empty || select.val() != ""){
+            selectedIndex= select.select2('data')[0]['id']
+            makeAjaxCall('GET', '/api/commune/' + selectedIndex, setGlobalIndicators)
             resetAllScore()
-        }
-        else {
+        }else{
             resetAllScore()
             txtError.textContent = "Données non valides"
         }
-
-
-
     })
 
 
@@ -71,23 +66,25 @@
     /*** rempli le select  des communes  ***/
     const fillCommuneList = (data) => {
         let mydata = JSON.parse(data)
-      //  console.log(mydata)
+        //  console.log(mydata)
+        var firstOpt = new Option("", "", false, false);
+        select.append(firstOpt).trigger('change');
         for (elm of mydata) {
-            let option = document.createElement('option')
-            option.text = elm.nom_commune
-            if (elm.nom_iris) option.text += ' - ' + elm.nom_iris
-            option.id = elm.id
-            select.add(option)
+            var data = {
+                id: elm.id,
+                text: elm.nom_commune
+            };
+            if (elm.nom_iris) data.text += ' - ' + elm.nom_iris
+
+            var newOption = new Option(data.text, data.id, false, false);
+            select.append(newOption).trigger('change');
         }
     }
 
     /* vider le select */
 
     const removeSelectOptions = () => {
-        var length = select.options.length;
-        for (i = length - 1; i >= 0; i--) {
-            select.options[i] = null;
-        }
+        select.html("");
     }
 
 
@@ -136,7 +133,6 @@
         txtError.textContent = empty
         denominateur.textContent = empty
         rangGlobal.textContent = empty
-        select.disabled = true
        
 
     }
@@ -186,9 +182,8 @@
     /*******************************************************************/
 
     $(document).ready(function () {
-        $("#communes").select2({
+        select.select2({
             placeholder: 'Sélectionnez une commune',
-            allowClear: true
         });
 
 

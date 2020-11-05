@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"sort"
 	"strconv"
 	"sync"
 
@@ -16,10 +17,11 @@ import (
 )
 
 // Determine la taille max d'un bloc d'insertion
-const TailleBlocInsert = 100
+const TailleBlocInsert = 250
 
 // ImportDepuisCSV importe les fichiers CSV situé dans le dossier CSV du projet.
 func ImportDepuisCSV() error {
+	beego.Debug("Début import des données")
 	csvCommune := ouvrirCSV("Commune_avec_rang")
 	defer csvCommune.Close()
 	csvDepartement := ouvrirCSV("Departement")
@@ -88,13 +90,7 @@ func ImportDepuisCSV() error {
 		beego.Error(err)
 	}
 
-	beego.Debug(runtime.NumCPU())
-	chanCommune := make(chan []string, TailleBlocInsert)
-	var wg sync.WaitGroup
-	for i := 0; i < runtime.NumCPU(); i++ {
-		go traitementCommune(o, &wg, chanCommune)
-	}
-
+	var listeCommune []*models.Commune
 	for {
 		record, err := readerCommune.Read()
 		if err == io.EOF {
@@ -103,26 +99,7 @@ func ImportDepuisCSV() error {
 		if err != nil {
 			beego.Error(err)
 		}
-		chanCommune <- record
-	}
 
-	close(chanCommune)
-	wg.Wait()
-	return nil
-}
-
-func traitementCommune(o orm.Ormer, wg *sync.WaitGroup, chanCommune chan []string) {
-	defer func() {
-		wg.Done()
-	}()
-	wg.Add(1)
-
-	var listeCommune []*models.Commune
-	for {
-		record, ok := <-chanCommune
-		if !ok {
-			break
-		}
 		c := &models.Commune{
 			//ID:               atoi(record[0]),
 			NomIris:          record[0],
@@ -135,16 +112,55 @@ func traitementCommune(o orm.Ormer, wg *sync.WaitGroup, chanCommune chan []strin
 			ScoreCompNumsco:  atoi(record[7]),
 			Region:           &models.Region{ID: atoi(record[8])},
 			Departement:      &models.Departement{ID: atoi(record[9])},
-			Rang:             atoi(record[10]),
+			//Rang:             atoi(record[10]),
 		}
-
 		listeCommune = append(listeCommune, c)
 	}
+
+	sort.Slice(listeCommune, func(i, j int) bool {
+		return listeCommune[i].ScoreGlobal < listeCommune[j].ScoreGlobal
+	})
+
+	for i, c := range listeCommune {
+		c.Rang = i
+	}
+
+	beego.Debug(runtime.NumCPU())
+	var wg sync.WaitGroup
+
+	cpus := runtime.NumCPU()
+	tailleSlice := len(listeCommune) / cpus
+	reste := len(listeCommune) % cpus
+	for i := 0; i < cpus; i++ {
+		debut := i * tailleSlice
+		fin := (i + 1) * tailleSlice
+
+		if i == cpus-1 {
+			fin += reste
+		}
+		beego.Debug("THREAD", i, "SLICE", debut, fin)
+
+		go insertionCommune(o, &wg, listeCommune[debut:fin])
+	}
+
+	// if _, err := o.InsertMulti(TailleBlocInsert, listeCommune); err != nil {
+	// 	beego.Error(err)
+	// }
+
+	wg.Wait()
+	beego.Debug("Import des données terminé")
+	return nil
+}
+
+func insertionCommune(o orm.Ormer, wg *sync.WaitGroup, listeCommune []*models.Commune) {
+	defer func() {
+		wg.Done()
+	}()
+	wg.Add(1)
 
 	if _, err := o.InsertMulti(TailleBlocInsert, listeCommune); err != nil {
 		beego.Error(err)
 	}
-
 }
 
 // OuvrirCSV ouvre le fichier passé en paramètre pour la lecture. En cas de succès,
