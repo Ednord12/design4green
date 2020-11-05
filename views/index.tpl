@@ -66,7 +66,7 @@
                             style="height: 100%;width: 100%;padding: 18px;text-align: center;background: #009432;border-style: none;">RECHERCHER !</button>
                     </div>
                     <div class="col-12">
-                        <h3 id='error' style="padding:5px; color: #e61611;text-align: center;">  </h3>
+                        <h4 id='error' style="padding:5px; color: #e61611;text-align: center;">  </h4>
                     </div>
                 </div>
             </div>
