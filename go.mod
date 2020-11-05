@@ -8,6 +8,7 @@ require (
 	github.com/OwnLocal/goes v1.0.0 // indirect
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/jfcg/sorty v1.0.4
+	github.com/johnfercher/maroto v0.28.0
 	github.com/prometheus/client_golang v1.8.0 // indirect
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18 // indirect
 	github.com/siddontang/go v0.0.0-20180604090527-bdc77568d726 // indirect
