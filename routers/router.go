@@ -11,9 +11,8 @@ func init() {
 	beego.Router("/", &controllers.MainController{})
 
 	ns := beego.NewNamespace("/api",
-		beego.NSRouter("/test", &api.TestApiController{}, "get:Get"),
-		beego.NSRouter("/codepostal/:cp", &api.CodePostalAPIController{}, "get:Get"),
-		beego.NSRouter("/commune/:id", &api.CommuneAPIController{}, "get:Get"),
+		beego.NSRouter("/codepostal/:cp", &api.CodePostalAPIController{}),
+		beego.NSRouter("/commune/:id", &api.CommuneAPIController{}),
 	)
 
 	beego.AddNamespace(ns)
