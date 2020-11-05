@@ -14,19 +14,23 @@
         <div class="card" style="text-align:center; border-top-color: #81c784;border-right-style: none;border-bottom-color: #81c784;border-left-style: none;">
             <div class="card-body d-flex flex-column align-items-center intro" style=" border-style: none;border-bottom-color: #81c784;border-left-style: none;">
                 <h2 style="color: #009432; width: 100%; ">Fragil'Indice</h2>
-                <h1 style="color: #81c784;">Calculez rapidement votre indice de fragilité numérique !</h1>
+                <h4 style="color: #81c784; font-size: 2.5em;">Calculez rapidement votre indice de fragilité numérique !</h4>
                 <p style="margin: 30px;">
                     Cet indice permet d’identifier les zones les plus touchées par une exclusion numérique et par l’illectronisme (contraction d’illettrisme et d’électronique). <br>
                     La construction de l’indice repose sur de nombreuses études qualitatives et quantitatives. Le labo inclusion numérique de l’ANSA identifie 4 conditions liées à la probabilité d’avoir accès aux services dont au moins une partie du processus nécessite un usage numérique :     
                 </p>
-                <ul class="flex-row list-group row" style="list-style-type: none; margin-bottom: 50px ;">
-                    <li class="bgColor_gray list-group-item  " style="background-color: cadetblue; color:white;">
+                <p>
+
+                </p>
+                
+                <ul class="flex-row mx-auto justify-content-center list-group row" style="list-style-type: none; margin-bottom: 50px; width: 100%;">
+                    <li class="list-group-item" style="background-color: #5f9ea0; color:white;width: 380px;">
                         L’accès à l’information sur le web </li>
-                    <li class="list-group-item" style="background-color: #EE5A24; color: white;"> L’ accès aux
+                    <li class="list-group-item" style="background-color: #ef5b25; color: white;width: 380px"> L’ accès aux
                         interfaces numériques </li>
-                    <li class="list-group-item" style="background-color: #006266; color: white;"> Les capacités d’usage
+                    <li class="list-group-item" style="background-color: #006266; color: white;width: 380px"> Les capacités d’usage
                         des interfaces numériques</li>
-                    <li class="list-group-item" style="background-color: #F79F1F; color: white;"> Les compétences
+                    <li class="list-group-item" style="background-color: #f79f1f; color: white;width: 380px"> Les compétences
                         administratives</li>
                 </ul>
                 <p>
@@ -72,9 +76,9 @@
     <div class="shadow highlight-phone align-items-center" style="margin-right: 35px;margin-left: 35px;">
         <div class="container" >
             <div class="row">
-                <div class="col-md-8">
-                    <div class="intro">
-                        <h2 id='idNomCommune'></h2>
+                <div class="col-12 col-lg-8">
+                    <div class="intro align-items-center">
+                        <h3 id='idNomCommune'></h3>
                         <p>La commune de la Rochelle possède un score de 78 sur 100, ce qui la classe 587/ 3824
                         <p>Rapport effectué le 04 /11/ 2020</p>
                         </p>
@@ -131,31 +135,28 @@
             <div class="row">
                 <div class="col-12 col-lg-6" style="margin-top: 50px;">
                     <div class="row">
-                        <div class="col-3"></div>
-                        <div class="col-6 text-center">
+                        <div class="col-12 text-center">
                             <h5 class="text-muted">Critères d'accès</h5>
                         </div>
-                        <div class="col-3"></div>
 
                         <div class="col-12">
-                            <div class="row">
-                                <div class="col-12 col-lg-6  align-items-center">
-                                    <div class="card border shadow-lg" style="width: 100%;height: 100%;padding: 20px;border-color: #92d36f;">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-lg-6">
+                                    <div class="card border shadow-lg" style="width: 100%;height: 217px;border-color: #92d36f;">
                                         <div class="card-body">
                                             <h6 class=" card-subtitle mb-2" style="text-align: center; color: cadetblue;">Accès à
                                                 l'information</h6>
-                                            <p id='idAccesInformationScore' class="card-text"
-                                                style="font-size: 90px;text-align: center;color: cadetblue;">68</p>
+                                            <p id='idAccesInformationScore' class="card-text" style="font-size: 90px;text-align: center;color: cadetblue;">68</p>
                                         </div>
                                     </div>
                                     
                                 </div>
                             
                                 <div class="col-12 col-lg-6">
-                                    <div class="card border shadow-lg" style="width: 100%;height: 100%;padding: 20px;border-color: #92d36f;">
+                                    <div class="card border shadow-lg" style="width: 100%;height: 217px;border-color: #92d36f;">
                                         <div class="card-body" style="color: #e61611;">
                                             <h6 class=" card-subtitle mb-2" style="text-align: center;color: #EE5A24;">Accès aux interfaces numériques</h6>
-                                            <p id='idAccesInferfaceNumeriqueScore' class="card-text" style="text-align: center;font-size: 90px;color: #EE5A24;">35</p>
+                                            <p id='idAccesInferfaceNumeriqueScore' class="card-text" style="font-size: 90px;text-align: center;color: #EE5A24;">35</p>
                                         </div>
                                     </div>
                                 </div>
@@ -166,16 +167,14 @@
                 
                 <div class="col-12 col-lg-6" style="margin-top: 50px;">
                     <div class="row">
-                        <div class="col-3"></div>
-                        <div class="col-6 text-center">
+                        <div class="col-12 text-center">
                             <h5 class="text-muted">Critères de compétences</h5>
                         </div>
-                        <div class="col-3"></div>
 
                         <div class="col-12">
-                            <div class="row">
-                                <div class="col-12 col-lg-6  align-items-center">
-                                    <div class="card  border  shadow-lg" style="width: 100%;height: 100%;">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-lg-6 ">
+                                    <div class="card  border  shadow-lg" style="width: 100%;height: 217px;">
                                         <div class="card-body">
                                             <h6 class=" card-subtitle mb-2" style="text-align: center; color:#006266;">Compétences
                                                 numériques/scolaire&nbsp;</h6>
@@ -187,7 +186,7 @@
                                 </div>
                             
                                 <div class="col-12 col-lg-6">
-                                    <div class="card  border  shadow-lg" style="width: 100%;height: 100%;">
+                                    <div class="card  border  shadow-lg" style="width: 100%;height: 217px;">
                                         <div class="card-body">
                                             <h6 class=" card-subtitle mb-2" style="text-align: center; color: #F79F1F;">Compétences
                                                 administrative</h6>
@@ -207,18 +206,21 @@
     </div>
     <div class="footer-basic">
         <footer>
-            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i
-                        class="icon ion-social-snapchat"></i></a><a href="#"><i
-                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a>
+            <div class="social">
+                <a ><i class="icon ion-social-instagram"></i></a>
+                <a ><i class="icon ion-social-snapchat"></i></a>
+                <a ><i class="icon ion-social-twitter"></i></a>
+                <a ><i class="icon ion-social-facebook"></i></a>
             </div>
             <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Home</a></li>
-                <li class="list-inline-item"><a href="#">Services</a></li>
-                <li class="list-inline-item"><a href="#">About</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                <li class="list-inline-item"><a href="#">À propos</a></li>
+                <li class="list-inline-item"><a href="mailto:turbosecolos@gmail.com">Contact</a></li>
+                <li class="list-inline-item"><a href="#">CGU</a></li>
+                <li class="list-inline-item"><a href="https://twitter.com/EcolosTurbos">Twitter</a></li>
+                <li class="list-inline-item"><a href="https://twitter.com/Design4Green">Design 4 Green</a></li>
             </ul>
             <p class="copyright"><a href="#"><strong>Fragil'Indice</strong></a>&nbsp;© 2020</p>
+            <p class="copyright"><strong>Site web réalisé dans le cadre du challenge <a href="https://design4green.org/">Design 4 Green</a> édition 2020</strong></p>
         </footer>
     </div>
     {{template "include/js.tpl"}}
