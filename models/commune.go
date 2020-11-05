@@ -14,6 +14,8 @@ type Commune struct {
 	ScoreCompNumsco  int          `json:"score_comp_numsco,omitempty" orm:"column(score_comp_numsco)"`
 	Departement      *Departement `json:"departement,omitempty" orm:"rel(fk)"`
 	Region           *Region      `json:"region,omitempty" orm:"rel(fk)"`
+	Rang             int          `json:"rang,omitempty" orm:"column(rang)"`
+	NbCommunes       int          `json:"nb_communes" orm:"-"`
 }
 
 func init() {
