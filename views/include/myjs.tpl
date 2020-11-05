@@ -33,13 +33,13 @@
         txtSeach.addEventListener('input', (event) => {
             if (event.currentTarget.value.length === 5) {
                 console.log(event.currentTarget.value)
-                select.desabled = false
+                select.disabled = false
                 removeSelectOptions()
                 makeAjaxCall('GET', '/api/codepostal/' + event.currentTarget.value, fillCommuneList)
 
             }
 
-            else if (event.currentTarget.value.length === 0) {
+            else if (event.currentTarget.value.length < 5) {
                 select.disabled = true
                 removeSelectOptions()
                 resetAllScore()
@@ -136,7 +136,6 @@
         txtError.textContent = empty
         denominateur.textContent = empty
         rangGlobal.textContent = empty
-        select.disabled = true
        
 
     }

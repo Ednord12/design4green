@@ -46,7 +46,7 @@
                     <div class="col-12 col-sm-12 col-lg-5 offset-0 d-flex justify-content-center align-items-center align-content-center" style="padding-right: 0px;padding-left: 0px;">
                         <input id="txt_code_postal" type="number" style="height: 100%;margin: 0px;width: 100%;text-align: center;background: rgb(222,222,222);padding: 18px;border-style: none;border-left-style: solid;" placeholder="CODE POSTAL"></div>
                     <div class="col-5 col-sm-12 col-lg-5" style="padding: 0px;padding-left: 0px;">
-                        <select id="communes" class="js-example-placeholder-single js-states form-control"
+                        <select id="communes" disabled="true" class="js-example-placeholder-single js-states form-control"
                             style="height: 100%;width: 100%;margin: 0px;margin-top: 0px;margin-right: 0px;text-align: center;background: #dedede;border-style: none;border-left-style: solid;padding: 18px;">
                             <option></option>
 
