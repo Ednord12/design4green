@@ -4,11 +4,9 @@
 
 
 
-    var duree = 2; // Durée en seconde pendant laquel le compteur ira de 0 à 15
-
-
+    let duree = 2; // Durée en seconde pendant laquel le compteur ira de 0 à 15
+    let selectedIndex = undefined
     let select = $("#communes")
-
     let txtSeach = document.getElementById('txt_code_postal')
     let txtError = document.getElementById('error')
     let btnSeach = document.getElementById('btn_search')
@@ -23,9 +21,13 @@
     let nomRegion = document.getElementById('idNomRegion')
     let rangGlobal = document.getElementById('idGlobalRang')
     let nomDepartement = document.getElementById('idNomDepartement')
+    let btnAccept = document.getElementById('idAccept')
+    let btnRefuse = document.getElementById('idRefuse')
+    let mainContainer = document.getElementById('idMainContainer')
     let denominateur = document.getElementById('idDenominateur')
     let txtScoreMax = document.getElementById('idScoreMax')
     txtScoreMax.style.visibility = "hidden";
+
 
 
     /*******************************************************************/
@@ -42,26 +44,48 @@
             }
 
             else if (event.currentTarget.value.length < 5) {
-                select.prop("disabled", true) 
+                select.prop("disabled", true)
                 removeSelectOptions()
                 resetAllScore()
             }
 
         })
     }
+    btnAccept.addEventListener('click', () => {
+        setCookie("cookies", 'true', 100)
+        mainContainer.style.display = 'none'
+
+    })
+    btnRefuse.addEventListener('click', () => {
+        mainContainer.style.display = 'none'
+    })
 
 
     btnSeach.addEventListener('click', (event) => {
-        if(txtSeach.empty || select.val() != ""){
-            selectedIndex= select.select2('data')[0]['id']
-            makeAjaxCall('GET', '/api/commune/' + selectedIndex, setGlobalIndicators)
+        if (txtSeach.empty || select.val() != "") {
+            selectedIndex = select.select2('data')[0]['id']
+            /* On verifie si la requete existe deja */
+            getCookie(selectedIndex, processCall)
             txtScoreMax.style.visibility = "visible";
-            resetAllScore()
-        }else{
+        } else {
             resetAllScore()
             txtError.textContent = "Données non valides"
         }
     })
+
+
+    const processCall = (data) => {
+
+        if (data != null) {
+            console.log("cookie existe")
+
+            setGlobalIndicators(data)
+        } else {
+            console.log("cookie not existe")
+
+            makeAjaxCall('GET', '/api/commune/' + selectedIndex, setGlobalIndicators)
+        }
+    }
 
 
 
@@ -93,9 +117,22 @@
 
         let dataJson = JSON.parse(data)
         fillScoreFiled(dataJson)
+        console.log(getCookie("cookies"));
+        getCookie("cookies", (result) => {
+            if (result != null) {
+
+                console.log("setting cookies");
+                setCookie(selectedIndex, data, 100)
+            }
+
+        })
+
+
     }
 
     const fillScoreFiled = (data) => {
+
+        console.log("fillScoreFiled", data)
 
         setCounter(data.score_acces_intnum, accesInferfaceNumeriqueScore)
         setCounter(data.score_acces_info, accesInformationScore)
@@ -104,6 +141,7 @@
         setCounter(data.departement.score_global, departementalScore)
         setCounter(data.region.score_global, regionalScore)
         setCounter(data.rang, rangGlobal)
+        console.log(data.rang);
 
         nomDepartement.textContent = data.departement.nom
         nomRegion.textContent = data.region.nom
@@ -133,7 +171,7 @@
         txtError.textContent = empty
         denominateur.textContent = empty
         rangGlobal.textContent = empty
-       
+
 
     }
 
@@ -173,6 +211,56 @@
     }
 
 
+    const setCookie = (key, value, expireddays) => {
+        console.log("setting cookies")
+        var date = new Date();
+        date.setTime(date.getTime() + (expireddays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + date.toUTCString();
+
+        var cookie = [key, '=', JSON.stringify(value), '; ', expires, '; path=/;'].join('');
+        console.log(cookie);
+        document.cookie = cookie;
+        /*
+        let cook = key + "=" + value + ";" + expires + ";path=/"
+        //cook=cook.replace(/\s+/g, '');
+        console.log(cook);
+        document.cookie = key + "=" + value + ";" + expires + ";path=/";*/
+    }
+
+    const getCookie = (key, callback) => {
+
+
+
+        var result = document.cookie.match(new RegExp(key + '=([^;]+)'));
+        result && (result = JSON.parse(result[1]));
+        console.log(result)
+        if (callback) callback(result)
+
+
+        /* var name = key + "=";
+         var decodedCookie = decodeURIComponent(document.cookie);
+         var cookies = decodedCookie.split(';');
+         console.log(cookies);
+         for (var i = 0; i < cookies.length; i++) {
+             var c = cookies[i];
+             while (c.charAt(0) == ' ') {
+                 c = c.substring(1);
+             }
+             if (c.indexOf(name) == 0) {
+                 var result = c.substring(name.length, c.length)
+                 console.log(result);
+                 return result;
+             }
+         }
+         return "";*/
+    }
+    const checkCookies = () => {
+    
+        getCookie("cookies",(data)=>{
+            if(data!=null) mainContainer.style.display='none'
+        })
+    }
+
 
 
     /*******************************************************************/
@@ -181,6 +269,7 @@
         select.select2({
             placeholder: 'Sélectionnez une commune',
         });
+
 
 
 
@@ -194,9 +283,9 @@
     // function call
 
 
+    checkCookies()
     bindCodePostalListener();
     resetAllScore()
-
 
 
 </script>
