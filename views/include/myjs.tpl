@@ -262,7 +262,10 @@
          return "";*/
     }
     const checkCookies = () => {
-        if (getCookie("cookies") != null) mainContainer.style.display = "none"
+    
+        getCookie("cookies",(data)=>{
+            if(data!=null) mainContainer.style.display='none'
+        })
     }
 
 
