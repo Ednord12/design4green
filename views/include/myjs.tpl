@@ -4,7 +4,7 @@
 
 
 
-    var duree = 1.5; // Durée en seconde pendant laquel le compteur ira de 0 à 15
+    var duree = 2; // Durée en seconde pendant laquel le compteur ira de 0 à 15
 
 
     let select = $("#communes")
