@@ -216,9 +216,9 @@
         </div>
 
     </div>
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-center" style="margin: 0px;">
         <a href="#" id="btn_download" role="button" aria-pressed="true" class="btn btn-info btn-lg">
-            <i class="fa fa-download"></i> Télécharger au format PDF
+            Télécharger au format PDF
         </a>
     </div>
     <div class="footer-basic">
