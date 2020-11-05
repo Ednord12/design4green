@@ -9,9 +9,10 @@
 
     let select = $("#communes")
 
-    let txtSeach = document.getElementById('txt_code_postal')
+    let txtSearch = document.getElementById('txt_code_postal')
     let txtError = document.getElementById('error')
-    let btnSeach = document.getElementById('btn_search')
+    let btnSearch = document.getElementById('btn_search')
+    let btnDownload = document.getElementById('btn_download')
     let accesInferfaceNumeriqueScore = document.getElementById('idAccesInferfaceNumeriqueScore')
     let accesInformationScore = document.getElementById('idAccesInformationScore')
     let competencesAdministrativeScore = document.getElementById('idCompetencesAdministrativeScore')
@@ -31,7 +32,7 @@
     /** function definition  ***/
     const bindCodePostalListener = () => {
 
-        txtSeach.addEventListener('input', (event) => {
+        txtSearch.addEventListener('input', (event) => {
             if (event.currentTarget.value.length === 5) {
                 console.log(event.currentTarget.value)
                 select.prop("disabled", false) 
@@ -50,8 +51,8 @@
     }
 
 
-    btnSeach.addEventListener('click', (event) => {
-        if(txtSeach.empty || select.val() != ""){
+    btnSearch.addEventListener('click', (event) => {
+        if(txtSearch.empty || select.val() != ""){
             selectedIndex= select.select2('data')[0]['id']
             makeAjaxCall('GET', '/api/commune/' + selectedIndex, setGlobalIndicators)
             resetAllScore()
@@ -62,6 +63,29 @@
     })
 
 
+
+    btnDownload.addEventListener('click', (event) =>{
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            score_global: globalScore.textContent,
+            score_acces_1: accesInferfaceNumeriqueScore.textContent,
+            score_acces_2: accesInformationScore.textContent,
+            score_comp_1: competencesAdministrativeScore.textContent,
+            score_comp_2: competencesNumeriqueScore.textContent,
+            score_reg: regionalScore.textContent,
+            score_dep: departementalScore.textContent,
+            reg: nomRegion.textContent,
+            commune: select.select2('data')[0]['text'], 
+            cp: txtSearch.value,
+            dep: nomDepartement.textContent
+        }));
+    })
+
+    const test = (data) => {
+        console.log(data)
+    }
 
     /*** rempli le select  des communes  ***/
     const fillCommuneList = (data) => {
