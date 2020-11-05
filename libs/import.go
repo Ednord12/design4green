@@ -38,57 +38,13 @@ func ImportDepuisCSV() error {
 	var listeRegion []*models.Region
 
 	//Ignore les titres de colonnes
-	if _, err := readerCommune.Read(); err != nil {
-		beego.Error(err)
-	}
-	if _, err := readerDepartement.Read(); err != nil {
-		beego.Error(err)
-	}
-	if _, err := readerRegion.Read(); err != nil {
-		beego.Error(err)
-	}
+	readerCommune.Read()
+	readerDepartement.Read()
+	readerRegion.Read()
 
-	for {
-		record, err := readerRegion.Read()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			beego.Error(err)
-		}
+	insertionDepartement(o, readerDepartement, listeDepartement)
 
-		r := &models.Region{
-			ID:          atoi(record[0]),
-			Nom:         record[1],
-			ScoreGlobal: atoi(record[2]),
-		}
-		listeRegion = append(listeRegion, r)
-	}
-
-	if _, err := o.InsertMulti(TailleBlocInsert, listeRegion); err != nil {
-		beego.Error(err)
-	}
-
-	for {
-		record, err := readerDepartement.Read()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			beego.Error(err)
-		}
-
-		d := &models.Departement{
-			ID:          atoi(record[0]),
-			Nom:         record[1],
-			ScoreGlobal: atoi(record[2]),
-		}
-		listeDepartement = append(listeDepartement, d)
-	}
-
-	if _, err := o.InsertMulti(TailleBlocInsert, listeDepartement); err != nil {
-		beego.Error(err)
-	}
+	insertionRegion(o, readerRegion, listeRegion)
 
 	var listeCommune []*models.Commune
 	for {
@@ -159,6 +115,52 @@ func insertionCommune(o orm.Ormer, wg *sync.WaitGroup, listeCommune []*models.Co
 	wg.Add(1)
 
 	if _, err := o.InsertMulti(TailleBlocInsert, listeCommune); err != nil {
+		beego.Error(err)
+	}
+}
+
+func insertionDepartement(o orm.Ormer, readerDepartement *csv.Reader, listeDepartement []*models.Departement) {
+	for {
+		record, err := readerDepartement.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			beego.Error(err)
+		}
+
+		r := &models.Departement{
+			ID:          atoi(record[0]),
+			Nom:         record[1],
+			ScoreGlobal: atoi(record[2]),
+		}
+		listeDepartement = append(listeDepartement, r)
+	}
+
+	if _, err := o.InsertMulti(TailleBlocInsert, listeDepartement); err != nil {
+		beego.Error(err)
+	}
+}
+
+func insertionRegion(o orm.Ormer, readerRegion *csv.Reader, listeRegion []*models.Region) {
+	for {
+		record, err := readerRegion.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			beego.Error(err)
+		}
+
+		r := &models.Region{
+			ID:          atoi(record[0]),
+			Nom:         record[1],
+			ScoreGlobal: atoi(record[2]),
+		}
+		listeRegion = append(listeRegion, r)
+	}
+
+	if _, err := o.InsertMulti(TailleBlocInsert, listeRegion); err != nil {
 		beego.Error(err)
 	}
 }
