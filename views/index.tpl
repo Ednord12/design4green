@@ -178,11 +178,6 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center align-items-center">
-        <button type="button" class="btn btn-info btn-lg">
-            <i class="fa fa-download"></i> Télécharger au format PDF
-            </button>
-    </div>
     <div class="footer-basic">
         <footer>
             <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i
