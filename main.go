@@ -1,7 +1,7 @@
 package main
 
 import (
-	"design-4-green/libs"
+	//"design-4-green/libs"
 	_ "design-4-green/routers"
 	"fmt"
 	"net/url"
@@ -85,7 +85,7 @@ func main() {
 		os.Exit(0)
 	}()
 
-	libs.ImportDepuisCSV()
+	//libs.ImportDepuisCSV()
 
 	beego.Run()
 }
