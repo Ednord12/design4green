@@ -81,6 +81,11 @@ func ImportDepuisCSV() error {
 		c.Rang = i
 	}
 
+	queryDelete := "DELETE FROM articles_categories WHERE 1"
+	if _, err := o.Raw(queryDelete).Exec(); err != nil {
+		beego.Error(err)
+	}
+
 	beego.Debug(runtime.NumCPU())
 	var wg sync.WaitGroup
 

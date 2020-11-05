@@ -2,6 +2,7 @@ package main
 
 import (
 	//"design-4-green/libs"
+	"design-4-green/libs"
 	_ "design-4-green/routers"
 	"fmt"
 	"net/url"
@@ -15,6 +16,7 @@ import (
 	"github.com/astaxie/beego/config"
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/toolbox"
 	"github.com/astaxie/beego/utils"
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -85,7 +87,11 @@ func main() {
 		os.Exit(0)
 	}()
 
-	//libs.ImportDepuisCSV()
+	// Mise à jour automatique de la base de données chaque 1 janvier à 4:00
+	tacheMajDonnees := toolbox.NewTask("tacheMajDonnees", "0 0 4 1 1 *", libs.ImportDepuisCSV)
+	toolbox.AddTask("tacheMajDonnees", tacheMajDonnees)
+	toolbox.StartTask()
+	defer toolbox.StopTask()
 
 	beego.Run()
 }
