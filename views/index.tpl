@@ -192,11 +192,11 @@
             </div>
         </div>
     </div>
-    <div  id='idMainContainer'  style="position: absolute; bottom:-200%; top:0%; left: 0%; width: 100%; height: 200%; background-color: #2b26268f;">
-        <div class="  card d-flex justify-content-center" style="justify-content: center; align-items: center;height: 900px;">
-            <p class=" ">Ce site, pour son fonctionnement, utilise les cookies </p>
+    <div id='idMainContainer'  style="position: absolute; bottom:-200%; top:0%; left: 0%; width: 100%; height: 240%; background-color: #2b26268f;">
+        <div class="card d-flex justify-content-center" style="justify-content: center; align-items: center;height: 200px;">
+            <p class=" ">En poursuivant votre navigation, vous acceptez l’utilisation de cookies destinés à améliorer la performance du site internet et la qualité de nos services.</p>
             <div>
-                <button  id='idAccept'class="btn btn-dark btn-lg">J'accepte</button>
+                <button id='idAccept'class="btn btn-dark btn-lg">J'accepte</button>
                 <button id='idRefuse' class=" btn btn-danger btn-lg">Je refuse</button>
             </div>
 
