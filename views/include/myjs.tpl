@@ -4,7 +4,7 @@
 
 
 
-    var duree = 3; // Durée en seconde pendant laquel le compteur ira de 0 à 15
+    var duree = 1.5; // Durée en seconde pendant laquel le compteur ira de 0 à 15
 
 
     let txtSeach = document.getElementById('txt_code_postal')
@@ -22,9 +22,7 @@
     let nomRegion = document.getElementById('idNomRegion')
     let rangGlobal = document.getElementById('idGlobalRang')
     let nomDepartement = document.getElementById('idNomDepartement')
-    
-
-
+    let denominateur = document.getElementById('idDenominateur')
 
 
     /*******************************************************************/
@@ -35,9 +33,16 @@
         txtSeach.addEventListener('input', (event) => {
             if (event.currentTarget.value.length === 5) {
                 console.log(event.currentTarget.value)
+                select.desabled = false
                 removeSelectOptions()
                 makeAjaxCall('GET', '/api/codepostal/' + event.currentTarget.value, fillCommuneList)
 
+            }
+
+            else if (event.currentTarget.value.length === 0) {
+                select.disabled = true
+                removeSelectOptions()
+                resetAllScore()
             }
 
         })
@@ -54,8 +59,8 @@
         }
         else {
             resetAllScore()
-            txtError.textContent="Données non valides"
-            }
+            txtError.textContent = "Données non valides"
+        }
 
 
 
@@ -66,7 +71,7 @@
     /*** rempli le select  des communes  ***/
     const fillCommuneList = (data) => {
         let mydata = JSON.parse(data)
-        console.log(mydata)
+      //  console.log(mydata)
         for (elm of mydata) {
             let option = document.createElement('option')
             option.text = elm.nom_commune
@@ -101,13 +106,15 @@
         setCounter(data.score_comp_numsco, competencesNumeriqueScore)
         setCounter(data.departement.score_global, departementalScore)
         setCounter(data.region.score_global, regionalScore)
-        setCounter(data.score_global, globalScore)
+        setCounter(data.rang, rangGlobal)
 
         nomDepartement.textContent = data.departement.nom
         nomRegion.textContent = data.region.nom
         nomRegion.textContent = data.region.nom
         nomCommune.textContent = data.nom_commune
-        rangGlobal.textContent=data.rang
+        globalScore.textContent = "Score global : " + data.score_global
+
+        denominateur.textContent = ' / ' + data.nb_communes
 
 
     }
@@ -126,7 +133,11 @@
         nomCommune.textContent = empty
         nomDepartement.textContent = empty
         nomRegion.textContent = empty
-        txtError.textContent=empty
+        txtError.textContent = empty
+        denominateur.textContent = empty
+        rangGlobal.textContent = empty
+        select.disabled = true
+       
 
     }
 
@@ -135,16 +146,21 @@
 
 
     const setCounter = (value, node) => {
+       // console.log(value);
 
-        var delta = Math.ceil((duree * 1000) / value); // On calcule l'intervalle de temps entre chaque rafraîchissement du compteur (durée mise en milliseconde)
-        var cpt = 0; // Initialisation du compteur
+        if (value >= 0 && value < 600) {
+            var delta = (duree / value); // On calcule l'intervalle de temps entre chaque rafraîchissement du compteur (durée mise en milliseconde)
+            var cpt = 0; // Initialisation du compteur
 
-        let timer = setInterval(() => {
-            //console.log(delta, cpt)
-            node.innerHTML = cpt;
-            cpt += 1;
-            if (cpt == value) clearInterval(timer)
-        }, delta);
+            let timer = setInterval(() => {
+              //  console.log(delta)
+                node.innerHTML = cpt;
+                if (cpt == value) clearInterval(timer)
+                cpt += 1;
+            }, delta);
+        } else node.innerHTML = value;
+
+
     }
 
 
