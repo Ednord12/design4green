@@ -9,24 +9,38 @@
     
 
 <body>
-    <nav class="navbar navbar-light navbar-expand-md navigation-clean">
-        <div class="container"><a class="navbar-brand" href="#"><strong>Fragil'Indice</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div
-                class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="padding-right: 30px;padding-left: 30px;margin: 0px;padding-bottom: 30px;padding-top: 30px;height: 97vh;width: 100%;text-shadow: 0px 0px;">
         <div class="card d-flex justify-content-center align-items-center" style="width: 100%;height: 100%;border-top-color: rgb(129,199,132);border-right-style: none;border-bottom-color: rgb(129,199,132);border-left-style: none;">
-            <div class="card-body d-flex flex-column justify-content-center align-items-center" style="height: 634px;border-style: none;border-bottom-color: #81c784;border-left-style: none;">
-                <h1 style="color: #81c784;">Fragil'Indice</h1>
-                <p style="margin: 46px;text-align: center;width: 70%;margin-left: 30px;margin-right: 30px;margin-top: 30px;margin-bottom: 30px;">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using
-                    'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover&nbsp;</p>
-                <div class="row d-flex flex-grow-0"
+            <div class="card-body d-flex flex-column justify-content-center align-items-center" style="height: 500px;border-style: none;border-bottom-color: #81c784;border-left-style: none;">
+                <h1 style="color: #81c784; font-size:8rem;">Fragil'Indice</h1>
+                <h1 style="color: #81c784;">Calculez rapidement votre indice de fragilité numérique !</h1>
+                <p style="margin: 46px;text-align: center;width: 70%;margin-left: 30px;margin-right: 30px;margin-top: 30px;margin-bottom: 30px;">
+                    Cet indice permet d’identifier les zones les plus touchées par une exclusion numérique et par l’illectronisme (contraction d’illettrisme et d’électronique). <br>
+                    La construction de l’indice repose sur de nombreuses études qualitatives et quantitatives. Le labo inclusion numérique de l’ANSA identifie 4 conditions liées à la probabilité d’avoir accès aux services dont au moins une partie du processus nécessite un usage numérique :     
+                </p>
+                <ul style="list-style-type: none;">
+                        <li>- L’accès à l’information sur le web </li>
+                        <li>- L’accès aux interfaces numériques </li>
+                        <li>- Les capacités d’usage des interfaces numériques</li>
+                        <li>- Les compétences administratives</li>
+                </ul>
+                <p style="text-align: center;width: 70%;">
+                    Ces 4 conditions correspondent aux 4 axes du modèle statistique. <br>
+                    Ensuite, chacun des 4 axes de l’analyse prend en compte différentes variables ou hypothèses, qui désignent des caractéristiques susceptibles d’expliquer la fragilité numérique. <br>
+                    Vous pouvez rechercher ci-dessous le score global d’une commune ainsi que d’autres informations en saisissant d’abord votre code postal, puis en choisissant la commune associée. 
+                
+                </p>      
+                <div class="row d-flex flex-grow-0" style="width: 95%;height: 85px;">
+                    <div class="col-12 col-sm-12 col-lg-5 offset-0 d-flex justify-content-center align-items-center align-content-center" style="padding-right: 0px;padding-left: 0px;">
+                    <h4>1. Saisissez votre code postal</h4> 
+                    </div>
+                    <div class="col-12 col-sm-12 col-lg-5 offset-0 d-flex justify-content-center align-items-center align-content-center" style="padding-right: 0px;padding-left: 0px;">
+                        <h4>2. Choisissez votre commune</h4>
+                    </div>
+
+                </div>   
+                
+                   <div class="row d-flex flex-grow-0"
                     style="width: 95%;height: 85px;">
                     <div class="col-12 col-sm-12 col-lg-5 offset-0 d-flex justify-content-center align-items-center align-content-center" style="padding-right: 0px;padding-left: 0px;">
                         <input id="txt_code_postal" type="text" style="height: 100%;margin: 0px;width: 100%;text-align: center;background: rgb(222,222,222);padding: 18px;border-style: none;border-left-style: solid;" placeholder="CODE POSTAL"></div>
@@ -102,7 +116,7 @@
                     <div class="card border-secondary border rounded-circle shadow-lg" style="padding: 10px;">
                         <div class="card-body" style="color: #e61611;">
                             <h6 class="text-secondary card-subtitle mb-2" style="text-align: center;color: #f4eb49;">Accès aux interfaces numériques</h6>
-                            <p  id='idAccesInferfaceNumeriqueScore' class="card-text" style="text-align: center;font-size: 90px;background: #ffffff;color: #e61611;">35</p>
+                            <p  id='idAccesInferfaceNumeriqueScore' class="card-text" style="text-align: center;font-size: 90px;color: #e61611;">35</p>
                         </div>
                     </div>
                 </div>
