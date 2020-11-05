@@ -84,5 +84,7 @@ func main() {
 		os.Exit(0)
 	}()
 
+	//libs.ImportDepuisCSV()
+
 	beego.Run()
 }

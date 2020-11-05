@@ -1,6 +1,7 @@
 package api
 
 import (
+	"design-4-green/libs"
 	"design-4-green/models"
 
 	"github.com/astaxie/beego"
@@ -30,6 +31,7 @@ func (c *CommuneAPIController) Get() {
 		}
 	}
 
+	commune.NbCommunes = libs.CalculNombreCommunes()
 	c.Data["json"] = commune
 	c.ServeJSON()
 }
