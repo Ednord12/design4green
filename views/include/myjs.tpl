@@ -35,7 +35,6 @@
 
         txtSeach.addEventListener('input', (event) => {
             if (event.currentTarget.value.length === 5) {
-                console.log(event.currentTarget.value)
                 select.prop("disabled", false) 
                 removeSelectOptions()
                 makeAjaxCall('GET', '/api/codepostal/' + event.currentTarget.value, fillCommuneList)
@@ -69,7 +68,6 @@
     /*** rempli le select  des communes  ***/
     const fillCommuneList = (data) => {
         let mydata = JSON.parse(data)
-        //  console.log(mydata)
         var firstOpt = new Option("", "", false, false);
         select.append(firstOpt).trigger('change');
         for (elm of mydata) {
@@ -93,7 +91,6 @@
 
     const setGlobalIndicators = (data) => {
 
-        console.log(data)
         let dataJson = JSON.parse(data)
         fillScoreFiled(dataJson)
     }
@@ -145,14 +142,12 @@
 
 
     const setCounter = (value, node) => {
-       // console.log(value);
 
         if (value >= 0 && value < 600) {
             var delta = (duree / value); // On calcule l'intervalle de temps entre chaque rafraîchissement du compteur (durée mise en milliseconde)
             var cpt = 0; // Initialisation du compteur
 
             let timer = setInterval(() => {
-              //  console.log(delta)
                 node.innerHTML = cpt;
                 if (cpt == value) clearInterval(timer)
                 cpt += 1;
@@ -165,7 +160,6 @@
 
     /*  faire un appel AJAX **/
     const makeAjaxCall = (methode, url, callback) => {
-        console.log(url)
         let ajax = new XMLHttpRequest()
 
         ajax.onreadystatechange = () => {
@@ -174,7 +168,6 @@
             }
 
         }
-        console.log('request sent')
         ajax.open(methode, url);
         ajax.send()
     }
